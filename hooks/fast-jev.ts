@@ -316,7 +316,7 @@ export const register: Register = (on: On, options: PluginOptions) => {
     return { text: await runJevCompactCommand($) };
   });
 
-  on('session.compact', async ($, event, next) => {
+  on('session.compact', { trigger: 'plugin' }, async ($, event, next) => {
     try {
       const config = { ...configured, apiKey: await getApiKey($, configured) };
       const { result, messages } = await compactSession(event.messages, config, async (url, init) => {
