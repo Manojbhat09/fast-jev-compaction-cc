@@ -41,6 +41,15 @@ For local development:
 CLAUDE_CODE_ENABLE_FUNCTION_HOOKS=1 claude --plugin-dir .
 ```
 
+## `/jevcompact`
+
+On top of hooking `/compact` and the auto-compaction threshold, the plugin
+registers its own slash command, `/jevcompact`, at session start. It runs the
+same Jev compaction on demand, calling `$.session.compact()` with `trigger`
+`plugin`; the outcome reads exactly like a `/compact` run (toast, decision log
+and fallback). A vetoed or failed compaction is reported by the command's own
+output line instead of a prompt.
+
 ## Configuration
 
 The plugin declares these `userConfig` values in
